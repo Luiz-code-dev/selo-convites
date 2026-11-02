@@ -17,13 +17,15 @@ const inter = Inter({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.seloconvites.com.br'
+const siteUrl = 'https://seloconvites.com.br'
+const title = 'Selo · Convites Digitais Interativos'
 const description =
-  'Convites digitais interativos criados sob medida para casamentos, 15 anos, aniversários, chás e eventos corporativos. Envelope animado, música, mapa e confirmação de presença em um só link.'
+  'Convites digitais que se abrem como um presente: música, movimento, mapa e confirmação de presença em um só link. Peça sua proposta sob medida.'
+const shareDescription = 'Convites que se abrem: música, movimento e confirmação de presença em um só link.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Selo · Convites Digitais Interativos sob medida',
+  title,
   description,
   applicationName: 'Selo',
   keywords: [
@@ -39,19 +41,23 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: siteUrl,
     siteName: 'Selo',
-    title: 'Selo · Convites que se abrem',
-    description,
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Envelope marfim fechado com selo de cera verde-petróleo' }],
+    title,
+    description: shareDescription,
+    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Selo — Convites que se abrem' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Selo · Convites que se abrem',
-    description,
-    images: ['/og.png'],
+    title,
+    description: shareDescription,
+    images: ['/og.jpg'],
   },
   icons: {
-    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
-    apple: '/apple-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
 }
 
