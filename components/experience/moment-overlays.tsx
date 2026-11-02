@@ -26,18 +26,18 @@ function EnvelopeOverlay({ active }: OverlayProps) {
   const enter = useEnter(active, 0.15)
   const opened = reduce || active
   return (
-    <motion.div {...enter} className="relative mx-auto w-44" style={{ perspective: 600 }}>
-      <div className={`${panel} relative h-28 overflow-hidden`}>
+    <motion.div {...enter} className="relative mt-8 w-36 self-start" style={{ perspective: 600 }}>
+      <div className={`${panel} relative h-20 overflow-hidden rounded-xl`}>
         <motion.div
           initial={false}
-          animate={{ y: opened ? -14 : 24, opacity: opened ? 1 : 0 }}
+          animate={{ y: opened ? -8 : 18, opacity: opened ? 1 : 0 }}
           transition={{ duration: 0.8, delay: reduce ? 0 : 1.1, ease: EASE }}
-          className="absolute inset-x-3 top-6 flex flex-col items-center gap-0.5 rounded-xl bg-sand px-2 py-3 text-center"
+          className="absolute inset-x-2 top-4 flex flex-col items-center rounded-lg bg-sand px-1.5 py-2 text-center"
         >
-          <span className="text-[10px] tracking-[0.2em] text-teal uppercase">Save the date</span>
-          <span className="font-serif text-base italic">Marina &amp; Rafael</span>
+          <span className="text-[8px] tracking-[0.2em] text-teal uppercase">Save the date</span>
+          <span className="font-serif text-sm leading-tight whitespace-nowrap italic">Marina &amp; Rafael</span>
         </motion.div>
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-14 bg-ivory [clip-path:polygon(0_0,50%_55%,100%_0,100%_100%,0_100%)]" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-10 bg-ivory [clip-path:polygon(0_0,50%_55%,100%_0,100%_100%,0_100%)]" />
       </div>
       <motion.div
         aria-hidden
@@ -45,16 +45,16 @@ function EnvelopeOverlay({ active }: OverlayProps) {
         animate={{ rotateX: opened ? 180 : 0 }}
         transition={{ duration: 0.7, delay: reduce ? 0 : 0.6, ease: EASE }}
         style={{ transformOrigin: 'top' }}
-        className="absolute inset-x-0 top-0 h-14 bg-sand [clip-path:polygon(0_0,100%_0,50%_100%)]"
+        className="absolute inset-x-0 top-0 h-10 bg-sand [clip-path:polygon(0_0,100%_0,50%_100%)]"
       />
       <motion.div
         aria-hidden
         initial={false}
         animate={{ opacity: opened ? 0 : 1, scale: opened ? 0.6 : 1 }}
         transition={{ duration: 0.4, delay: reduce ? 0 : 0.45 }}
-        className="absolute top-8 left-1/2 -translate-x-1/2"
+        className="absolute top-5 left-1/2 -translate-x-1/2"
       >
-        <Seal className="size-10" letter="M" />
+        <Seal className="size-7" letter="M" />
       </motion.div>
     </motion.div>
   )
