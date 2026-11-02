@@ -44,50 +44,11 @@ export const eventsMarquee = [
   'Eventos corporativos',
 ]
 
-export type MomentPhoto = {
-  src: string
-  alt: string
-  caption: string
-  available: boolean
-}
-
 export const moments = {
   eyebrow: 'A experiência',
   titleStart: 'Tem convite que se lê.',
   titleItalic: 'E tem convite que se sente.',
   text: 'O convite é o primeiro contato dos seus convidados com o seu evento. Quando ele se abre com música, movimento e cuidado em cada detalhe, a celebração começa ali, na palma da mão.',
-  photos: [
-    {
-      src: '/images/momento-noiva.jpg',
-      alt: 'Mulher sorrindo emocionada olhando o celular, com luz natural de fim de tarde',
-      caption: 'O primeiro sorriso do grande dia.',
-      available: false,
-    },
-    {
-      src: '/images/momento-avos.jpg',
-      alt: 'Casal de avós vendo o convite juntos no celular, na sala de casa',
-      caption: 'Simples para todas as idades.',
-      available: false,
-    },
-    {
-      src: '/images/momento-amigas.jpg',
-      alt: 'Três amigas reunidas em volta de um celular, rindo, em um café',
-      caption: 'Compartilhado em segundos.',
-      available: false,
-    },
-    {
-      src: '/images/momento-debutante.jpg',
-      alt: 'Jovem de 15 anos mostrando o convite no celular para a mãe',
-      caption: 'Do jeito que ela sonhou.',
-      available: false,
-    },
-    {
-      src: '/images/momento-detalhe.jpg',
-      alt: 'Close de mãos segurando o celular com o envelope animado abrindo na tela',
-      caption: 'Cada detalhe, pensado.',
-      available: false,
-    },
-  ] satisfies MomentPhoto[],
 }
 
 export const demo = {

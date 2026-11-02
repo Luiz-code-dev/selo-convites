@@ -54,6 +54,15 @@
     }
   }
 
+  @keyframes story-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   @keyframes seal-pulse {
     0%,
     100% {
