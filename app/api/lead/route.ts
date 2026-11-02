@@ -56,17 +56,25 @@ export async function POST(request: Request) {
   )
 
   try {
-    const { resend, EMAIL_FROM, LEAD_TO_EMAIL } = await import('@/lib/resend')
+    const { resend, EMAIL_FROM, LEAD_TO_EMAIL, SHARED_SENDER } = await import('@/lib/resend')
     const dateLabel = lead.dateUndefined ? 'data a definir' : formatEventDate(lead, true)
 
-    const team = await resend.emails.send({
-      from: EMAIL_FROM,
-      to: LEAD_TO_EMAIL,
-      replyTo: lead.email,
-      subject: `Novo pedido de convite · ${eventTypeLabel(lead)} · ${lead.names} · ${dateLabel}`,
-      react: LeadTeamEmail({ lead, attachmentNames: attachments.map((a) => a.filename) }),
-      attachments,
-    })
+    const sendTeam = (from: string) =>
+      resend.emails.send({
+        from,
+        to: LEAD_TO_EMAIL,
+        replyTo: lead.email,
+        subject: `Novo pedido de convite · ${eventTypeLabel(lead)} · ${lead.names} · ${dateLabel}`,
+        react: LeadTeamEmail({ lead, attachmentNames: attachments.map((a) => a.filename) }),
+        attachments,
+      })
+
+    let team = await sendTeam(EMAIL_FROM)
+    // Until the domain is verified in Resend, keep leads flowing through the shared sender (owner inbox only).
+    if (team.error && EMAIL_FROM !== SHARED_SENDER) {
+      console.error('[lead] domain sender failed, retrying with shared sender', team.error)
+      team = await sendTeam(SHARED_SENDER)
+    }
     if (team.error) {
       console.error('[lead] team email failed', team.error)
       return fail('Não conseguimos enviar agora. Tente novamente em instantes.', 502)
